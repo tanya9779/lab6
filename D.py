@@ -25,3 +25,31 @@
 | 6 4 6 3 |           |
 +---------+-----------+
 '''
+
+# !!!! В примере опечатка
+#  Первая строка ввода д.б. 3 4
+#  Результат д.б. 3 2 4 3
+
+in_f=open('input.txt')
+out_f=open('output.txt','w')
+s=in_f.readline().rstrip()
+K,N=list(map(int,s.split()))
+A=[]
+
+# данные в файле input.txt расположены неудобно для вычисления min - поэтому обратим матрицу
+for j in range(N): # создадим матрицу N*K (дни*годы) - в первой строке данные за 1-ый день наблюдений всех лет и т.д.
+    A.append([])
+
+for i in range(K): # заполняем двумерных список данных температуры
+    s=in_f.readline().rstrip()
+    tmp = list(map(int, s.split()))
+    for j in range(N):
+        A[j].append(tmp[j])
+
+B=[]
+for i in range(N):
+    B.append(min(A[i])) # можем применять станд функцию
+
+print(' '.join(map(str,B)),file=out_f)
+in_f.close()
+out_f.close()

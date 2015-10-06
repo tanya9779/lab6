@@ -38,3 +38,24 @@
 | 3 1 100 |            |
 +---------+------------+
 '''
+
+#creditor - тот кто дал в долг
+#debtor - тот кто взял
+
+in_f=open('input.txt')
+out_f=open('output.txt','w')
+s=in_f.readline().rstrip()
+N,K=list(map(int,s.split()))
+gentleman=[]
+for j in range(N+1): # отчет с 1 - в списке будут суммы
+    gentleman.append(0)
+
+for i in range(K): # обработаем все расписки
+    s=in_f.readline().rstrip()
+    debtor,creditor,summa = list(map(int, s.split()))
+    gentleman[debtor]-=summa
+    gentleman[creditor]+=summa
+
+print(' '.join(map(str,gentleman[1: ])),file=out_f) # отчет от 1
+in_f.close()
+out_f.close()

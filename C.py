@@ -25,3 +25,23 @@
   | -40 41 -42 -41 42 40 |       |
   +----------------------+-------+
 '''
+
+in_f=open('input.txt')
+out_f=open('output.txt','w')
+s=in_f.readline().rstrip()
+N=int(s)
+s=in_f.readline().rstrip()
+A = list(map(int, s.split()))
+
+min_n=len(A)+1 # это будем уменьшать
+for i in range(N-1):
+    if A[i]<0: # т.к. левый должен стоять левее правого
+        for j in range(i+ 1,N):
+            if A[j]==-A[i] and j-i<min_n:
+                min_n=j-i
+
+if min_n==len(A)+1: # нет пары чтобы слева левый и размер совпадает
+    min_n=0
+print(min_n,file=out_f)
+in_f.close()
+out_f.close()

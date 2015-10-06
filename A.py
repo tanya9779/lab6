@@ -16,3 +16,19 @@
 | 8 3 5 4 5 1 |       |
 +-------------+-------+
 '''
+
+in_f=open('input.txt')
+out_f=open('output.txt','w')
+s=in_f.readline().rstrip()
+N=int(s)
+s=in_f.readline().rstrip()
+A = list(map(int, s.split()))
+A.sort() # отсортируем список и
+         # поищем два подрядыдущих
+for i in range(N):
+    tmp=A[i]
+    if tmp==A[i+1]:
+        break
+print(str(tmp),file=out_f)
+in_f.close()
+out_f.close()

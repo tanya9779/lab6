@@ -42,3 +42,29 @@
 | 50 5 5 5 |       |
 +----------+-------+
 '''
+
+in_f=open('input.txt')
+out_f=open('output.txt','w')
+s=in_f.readline().rstrip()
+N=int(s)
+s=in_f.readline().rstrip()
+A = list(map(int, s.split()))
+
+S=0 # считаем, сколько накопилось на сдачу
+B=[] # список, сколько монет  не хватило на сдачу (каждый раз когда не хватило)
+max_n=0
+for i in range(N):
+    if A[i]==5: # еще одна монета на сдачу
+        S+=1
+    else:
+        if S<(A[i]//5)-1: # того что есть, на сдачу не хватает
+            B.append((A[i]//5)-1-S) # запомним, сколько не хватило
+            S=0
+        else: # сможем сдать своими
+            S-=(A[i]//5)-1
+if len(B)>0:
+    max_n=sum(B) # сложим все что не хватило
+print(max_n,file=out_f)
+in_f.close()
+out_f.close()
+
