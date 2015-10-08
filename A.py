@@ -17,6 +17,7 @@
 +-------------+-------+
 '''
 
+
 in_f=open('input.txt')
 out_f=open('output.txt','w')
 s=in_f.readline().rstrip()
